@@ -1,0 +1,1 @@
+geth --datadir "\mygeth1" --networkid 8956 --ipcdisable --port 30307 --http --http.api "eth,web3,personal,net,miner,admin,debug" --http.port 8507 --allow-insecure-unlock --http.addr "localhost" --nodiscover --http.corsdomain "*" console --mine minerthreads=1 etherbase=0x8306acAE091E1d115716a7e2E7Ef329EAd2029eB
