@@ -19,9 +19,16 @@
  */
 
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+const mnemonic = process.env["MNEMONIC"];
+
+const project_id = process.env["INFURA_PROJECT_ID"];
+console.log('The value of INFURA_PROJECT_ID is:', project_id);
+const rinkeby_infura_url = "https://rinkeby.infura.io/v3/" + project_id;
+console.log('The value of rinkeby_infura_url is:', rinkeby_infura_url);
 
 module.exports = {
   /**
@@ -34,6 +41,8 @@ module.exports = {
    * $ truffle test --network <network-name>
    */
 
+  contracts_build_directory: "./client/src/contracts",
+
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
@@ -41,11 +50,34 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
+    development: {
+     host: "127.0.0.1",     // Localhost (default: none)
+     port: 8545,            // Standard Ethereum port (default: none)
+     network_id: "*",       // Any network (default: none)
+    },
+
+    // geth + rinkeby うまく動かない
+    gethandrinkeby: {
+      provider: function() { 
+        return new HDWalletProvider(mnemonic, "http://127.0.0.1:8545");
+      },
+      network_id: "*",
+      // network_id: 4,
+      // gas: 4500000,
+      // gasPrice: 10000000000,
+    },
+
+    rinkeby: {
+      provider: function() { 
+        return new HDWalletProvider(mnemonic, rinkeby_infura_url);
+      },
+      network_id: 4,
+      gas: 4500000,
+      gasPrice: 10000000000,
+ 
+    },
+
+
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port

@@ -4,7 +4,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Greeter is Ownable {
 
-    string private _greeting = "Hello, World!";
+    string private _greeting = "Hello, World! 2";
 
     function greet() external view returns(string memory) {
         return _greeting;
