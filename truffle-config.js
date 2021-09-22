@@ -26,9 +26,7 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 const mnemonic = process.env["MNEMONIC"];
 
 const project_id = process.env["INFURA_PROJECT_ID"];
-console.log('The value of INFURA_PROJECT_ID is:', project_id);
 const rinkeby_infura_url = "https://rinkeby.infura.io/v3/" + project_id;
-console.log('The value of rinkeby_infura_url is:', rinkeby_infura_url);
 
 module.exports = {
   /**
