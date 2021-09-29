@@ -27,6 +27,7 @@ const mnemonic = process.env["MNEMONIC"];
 
 const project_id = process.env["INFURA_PROJECT_ID"];
 const rinkeby_infura_url = "https://rinkeby.infura.io/v3/" + project_id;
+const etherscan_api_key = process.env["ETHERSCAN_API_KEY"];
 
 module.exports = {
   /**
@@ -40,6 +41,14 @@ module.exports = {
    */
 
   contracts_build_directory: "./client/src/contracts",
+
+  api_keys: {
+    etherscan: etherscan_api_key
+  },
+
+  plugins: [
+    'truffle-plugin-verify'
+  ],
 
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
@@ -70,9 +79,8 @@ module.exports = {
         return new HDWalletProvider(mnemonic, rinkeby_infura_url);
       },
       network_id: 4,
-      gas: 4500000,
+      gas: 8000000,
       gasPrice: 10000000000,
- 
     },
 
 
